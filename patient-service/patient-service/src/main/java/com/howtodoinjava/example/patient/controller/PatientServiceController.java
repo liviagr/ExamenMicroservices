@@ -45,9 +45,8 @@ public class PatientServiceController {
 
     @ApiOperation(value = "Get patient with the specified name in the System ", response = Patient.class, tags =
             "getPatient")
-    @RequestMapping(value = "/getPatient/{name}")
+    @RequestMapping(value = "/getPatientbyName/{name}")
     public Patient getPatient(@PathVariable(value = "name") String name) {
-        // TODO return student
         for (Patient patient : patientData.values()) {
             if(patient.getName().equals((name))){
                 return patient;
@@ -71,24 +70,25 @@ public class PatientServiceController {
         return patient;
     }
 
-    @ApiOperation(value = "Get patient with the specified name in the System ", response = Patient.class, tags =
-            "getPatient")
+    @ApiOperation(value = "Add a patient", response = Patient.class, tags =
+            "addPatient")
     @PostMapping("/addPatient")
-    public Patient createPatient(@RequestBody Patient patient) {
-        patientData.put(patient.getId(), patient);
-        return patient;
+    public Map<Integer, Patient> createPatient(@RequestBody int id, String name) {
+        patientData.put(id, new Patient(id, name));
+        return patientData;
     }
 
-    @ApiOperation(value = "Get patient with the specified name in the System ", response = Patient.class, tags =
-            "getPatient")
+    @ApiOperation(value = "Update a patient", response = Patient.class, tags =
+            "updatePatient")
     @PutMapping("updatePatient/{id}")
-    public Patient updatePatient(@PathVariable Integer id, @RequestBody Patient patient) {
-        patientData.put(patient.getId(), patient);
-        return patient;
+    public Patient updatePatient(@PathVariable int id, @RequestBody String name) {
+        patientData.get(id).setName(name);
+        patientData.put(id, patientData.get(id));
+        return patientData.get(id);
     }
 
-    @ApiOperation(value = "Get patient with the specified name in the System ", response = Patient.class, tags =
-            "getPatient")
+    @ApiOperation(value = "Delete the specified patient", response = Patient.class, tags =
+            "deletePatient")
     @DeleteMapping("deletePatient/{id}")
     public void deletePerson(@PathVariable int id) {
         patientData.remove(id);

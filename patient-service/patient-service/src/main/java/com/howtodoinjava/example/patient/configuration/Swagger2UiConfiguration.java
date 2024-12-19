@@ -1,4 +1,4 @@
-package com.example.springbootswagger2.configuration;
+package com.howtodoinjava.example.patient.configuration;
 
 import com.google.common.base.Predicates;
 import org.springframework.context.annotation.Bean;
@@ -10,8 +10,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-// TODO enabled swagger 2
-// TODO : this is a config class
+
 @Configuration
 @EnableSwagger2
 public class Swagger2UiConfiguration extends WebMvcConfigurerAdapter  {
