@@ -23,7 +23,7 @@ public class MedicalRecordServiceController {
 
 		{
 			put(311,new MedicalRecord(311, 111,211));
-			put(322,new MedicalRecord(312, 112,212));
+			put(322,new MedicalRecord(322, 112,212));
 		}
  
     };
@@ -34,8 +34,8 @@ public class MedicalRecordServiceController {
             @ApiResponse(code = 401, message = "not authorized!"),
             @ApiResponse(code = 403, message = "forbidden!!!"),
             @ApiResponse(code = 404, message = "not found!!!") })
-    @RequestMapping(value = "/getmedicalrecords")
-    public Map<Integer, MedicalRecord> getmedicalrecords(){
+    @RequestMapping(value = "/getMedicalRecords")
+    public Map<Integer, MedicalRecord> getMedicalRecords(){
         return medicalrecordData;
     }
 
