@@ -2,22 +2,22 @@ package com.howtodoinjava.example.practitioner.beans;
 
 import io.swagger.annotations.ApiModelProperty;
 
-public class Patient {
+public class Practitioner {
 
 	@ApiModelProperty(
-			value = "first name of the patient",
+			value = "first name of the practitioner",
 			name = "name",
 			dataType = "String",
 			example = "Vatsal")
 	private String name;
 	@ApiModelProperty(
-			value = "id of the patient",
+			value = "id of the practitioner",
 			name = "id",
 			dataType = "int",
 			example = "111")
 	private int id;
 	
-	public Patient(int id, String name) {
+	public Practitioner(int id, String name) {
 		super();
 		this.id=id;
 		this.name=name;
@@ -41,7 +41,7 @@ public class Patient {
 
 	@Override
 	public String toString() {
-		return "Patient [name=" + name + ", id=" + id + "]";
+		return "Practitioner [name=" + name + ", id=" + id + "]";
 	}
 
 }

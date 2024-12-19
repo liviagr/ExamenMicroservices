@@ -1,5 +1,5 @@
 server:
-  port: 8011
+  port: 8012
 
 #  context-path: /patient-service
 eureka:         
@@ -16,7 +16,7 @@ eureka:
  
 spring:    
   application:
-    name: employee-service   
+    name: practitioner-service
      
 management:
   security:
