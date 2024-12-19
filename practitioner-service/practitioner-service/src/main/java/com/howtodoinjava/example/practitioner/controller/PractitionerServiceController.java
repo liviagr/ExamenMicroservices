@@ -53,7 +53,7 @@ public class PractitionerServiceController {
         return null;
     }
 
-    @ApiOperation(value = "Get practitioner with the specified name in the System ", response = Practitioner.class, tags =
+    @ApiOperation(value = "Get practitioner with the specified id in the System ", response = Practitioner.class, tags =
             "getpractitioner")
     @RequestMapping(value = "/getPractitioner/{practitionerId}", method = RequestMethod.GET)
     public Practitioner getpractitionerDetails(@PathVariable int practitionerId) {

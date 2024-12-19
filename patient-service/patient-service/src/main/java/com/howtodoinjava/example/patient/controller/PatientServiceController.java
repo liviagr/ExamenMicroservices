@@ -55,7 +55,7 @@ public class PatientServiceController {
         return null;
     }
 
-    @ApiOperation(value = "Get patient with the specified name in the System ", response = Patient.class, tags =
+    @ApiOperation(value = "Get patient with the specified id in the System ", response = Patient.class, tags =
             "getPatient")
     @RequestMapping(value = "/getPatient/{patientId}", method = RequestMethod.GET)
     public Patient getpatientDetails(@PathVariable int patientId) {

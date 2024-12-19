@@ -106,7 +106,6 @@ public class MedicalRecordServiceController {
 
         medicalrecordData.get(id).setPatientId(patientId);
         medicalrecordData.get(id).setPractitionerId(practitionerId);
-//        medicalrecordData.put(id, medicalrecordData.get(id));
         return medicalrecordData.get(id);
     }
 
