@@ -1,5 +1,6 @@
 package com.howtodoinjava.example.apigateway.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
@@ -11,31 +12,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-
 @RestController
-public class EmployeeController {
+public class PractitionerController {
 	
 	@Autowired
     RestTemplate restTemplate;
  
-    @RequestMapping(value = "/employeeDetails/{employeeid}", method = RequestMethod.GET)
+    @RequestMapping(value = "/practitionerDetails/{practitionerid}", method = RequestMethod.GET)
     @HystrixCommand(fallbackMethod = "fallbackMethod")
-    public String getStudents(@PathVariable int employeeid)
+    public String getStudents(@PathVariable int practitionerid)
     {
-        System.out.println("Getting Employee details for " + employeeid);
+        System.out.println("Getting practitioner details for " + practitionerid);
  
-        String response = restTemplate.exchange("http://employee-service/findEmployeeDetails/{employeeid}",
-                                HttpMethod.GET, null, new ParameterizedTypeReference<String>() {}, employeeid).getBody();
+        String response = restTemplate.exchange("http://practitioner-service/findpractitionerDetails/{practitionerid}",
+                                HttpMethod.GET, null, new ParameterizedTypeReference<String>() {}, practitionerid).getBody();
  
         System.out.println("Response Body " + response);
  
-        return "Employee Id -  " + employeeid + " [ Employee Details " + response+" ]";
+        return "practitioner Id -  " + practitionerid + " [ practitioner Details " + response+" ]";
     }
     
-    public String  fallbackMethod(int employeeid){
+    public String  fallbackMethod(int practitionerid){
     	
-    	return "Fallback response:: No employee details available temporarily";
+    	return "Fallback response:: No practitioner details available temporarily";
     }
  
     @Bean
