@@ -38,7 +38,6 @@ public class MedicalRecordServiceController {
     }
 
 
-
     @PostMapping("/addMedicalRecord")
     public Map<String, String> createMedicalRecord(@RequestBody int id, int patientId, int practitionerId) {
         return medicalRecordServiceDelegate.addMedicalRecord(id, patientId, practitionerId);

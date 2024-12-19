@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment  # Nom de la ressource
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: medicalrecord-service
+  template:
+    metadata:
+      labels:
+        app: medicalrecord-service
+    spec:
+      containers:
+      - name: medicalrecord-service
+        image: <registry>/<username>/medicalrecord-service:latest
+        ports:
+        - containerPort: 8067
