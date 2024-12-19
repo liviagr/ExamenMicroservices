@@ -3,6 +3,7 @@
     "patient-service",
     "practitioner-service",
     "medicalRecord-service",
-    "appointment-service"
+    "appointment-service",
+    "api-gateway"
   ]
 }

@@ -1,8 +1,7 @@
-package com.howtodoinjava.example.apigateway.patientservice.delegate;
+package com.howtodoinjava.example.apigateway.delegate;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -13,16 +12,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class PatientServiceDelegate {
+public class PractitionerServiceDelegate {
 
     @Autowired
     RestTemplate restTemplate;
 
     // TODO call our student service with details : make sure to do http exchange method : call fallback method if my service is down
-    @HystrixCommand(fallbackMethod = "fallbackResponsePatient")
-    public Map<String, String> receiveAllPatients() {
+    @HystrixCommand(fallbackMethod = "fallbackResponsePractitioner")
+    public Map<String, String> receiveAllPractitioners() {
         String call = this.restTemplate.exchange(
-                "http://localhost:8011/getPatients",
+                "http://localhost:8012/getPractitioners",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<String>() {
@@ -32,10 +31,10 @@ public class PatientServiceDelegate {
         return response;
     }
 
-    @HystrixCommand(fallbackMethod = "fallbackResponsePatient")
-    public Map<String, String> receivePatientByName(String name) {
+    @HystrixCommand(fallbackMethod = "fallbackResponsePractitioner")
+    public Map<String, String> receivePractitionerByName(String name) {
         String call = this.restTemplate.exchange(
-                "http://localhost:8011/getPatientbyName/{name}",
+                "http://localhost:8012/getpractitionerbyName/{name}",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<String>() {
@@ -44,10 +43,10 @@ public class PatientServiceDelegate {
         response.put("received", call);
         return response;
     }
-    @HystrixCommand(fallbackMethod = "fallbackResponsePatient")
-    public Map<String, String> receivePatient(int id) {
+    @HystrixCommand(fallbackMethod = "fallbackResponsePractitioner")
+    public Map<String, String> receivePractitioner(int id) {
         String call = this.restTemplate.exchange(
-                "http://localhost:8011/getPatient/{id}",
+                "http://localhost:8012/getPractitioner/{id}",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<String>() {
@@ -57,16 +56,16 @@ public class PatientServiceDelegate {
         return response;
     }
 
-    @HystrixCommand(fallbackMethod = "fallbackResponseAddPatient")
-    public Map<String, String> addPatient(int id, String name) {
+    @HystrixCommand(fallbackMethod = "fallbackResponseAddPractitioner")
+    public Map<String, String> addPractitioner(int id, String name) {
         Map<String, Object> requestParams = new HashMap<>();
         requestParams.put("id", id);
         requestParams.put("name", name);
 
-        HttpEntity request = new HttpEntity<>(requestParams);
+        HttpEntity<Map<String, Object>> request = new HttpEntity<>(requestParams);
 
         String call = this.restTemplate.exchange(
-                "http://localhost:8011/addPatient/",
+                "http://localhost:8012/addPractitioner",
                 HttpMethod.POST,
                 request,
                 new ParameterizedTypeReference<String>() {
@@ -76,11 +75,11 @@ public class PatientServiceDelegate {
         return response;
     }
 
-    @HystrixCommand(fallbackMethod = "fallbackResponseUpdatePatient")
-    public Map<String, String> updatePatient(int id, String name) {
+    @HystrixCommand(fallbackMethod = "fallbackResponseUpdatePractitioner")
+    public Map<String, String> updatePractitioner(int id, String name) {
         HttpEntity<String> request = new HttpEntity<>(name);
         String call = this.restTemplate.exchange(
-                "http://localhost:8011/updatePatient/{id}",
+                "http://localhost:8012/updatePractitioner/{id}",
                 HttpMethod.PUT,
                 request,
                 new ParameterizedTypeReference<String>() {
@@ -90,10 +89,10 @@ public class PatientServiceDelegate {
         return response;
     }
 
-    @HystrixCommand(fallbackMethod = "fallbackResponsePatient")
-    public Map<String, String> deletePatient(int id) {
+    @HystrixCommand(fallbackMethod = "fallbackResponsePractitioner")
+    public Map<String, String> deletePractitioner(int id) {
         String call = this.restTemplate.exchange(
-                "http://localhost:8011/deletePatient/{id}",
+                "http://localhost:8012/deletePractitioner/{id}",
                 HttpMethod.DELETE,
                 null,
                 new ParameterizedTypeReference<String>() {
@@ -105,40 +104,33 @@ public class PatientServiceDelegate {
 
 
 
-    public Map<String, String> fallbackResponsePatient(){
+    public Map<String, String> fallbackResponsePractitioner(){
         Map<String, String> response = new HashMap<>();
         response.put("received", "Aucune information disponible");
         return response;
     }
 
-    public Map<String, String> fallbackResponsePatient(String name){
+    public Map<String, String> fallbackResponsePractitioner(String name){
         Map<String, String> response = new HashMap<>();
-        response.put("received", "Aucune information disponible pour le patient portant ce nom");
+        response.put("received", "Aucune information disponible pour le Practitioner portant ce nom");
         return response;
     }
 
-    public Map<String, String> fallbackResponsePatient(int id){
+    public Map<String, String> fallbackResponsePractitioner(int id){
         Map<String, String> response = new HashMap<>();
-        response.put("received", "Aucune information disponible pour le patient correspondant à l'id donné");
+        response.put("received", "Aucune information disponible pour le Practitioner correspondant à l'id donné");
         return response;
     }
 
-    public Map<String, String> fallbackResponseAddPatient(int id, String name){
+    public Map<String, String> fallbackResponseAddPractitioner(int id, String name){
         Map<String, String> response = new HashMap<>();
-        response.put("received", "Le patient n'a pas pu être ajouté");
+        response.put("received", "Le Practitioner n'a pas pu être ajouté");
         return response;
     }
 
-    public Map<String, String> fallbackResponseUpdatePatient(int id, String name){
+    public Map<String, String> fallbackResponseUpdatePractitioner(int id, String name){
         Map<String, String> response = new HashMap<>();
-        response.put("received", "Le patient n'a pas pu être modifié");
+        response.put("received", "Le Practitioner n'a pas pu être modifié");
         return response;
-    }
-
-
-
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
     }
 }

@@ -35,7 +35,7 @@ public class PractitionerServiceController {
             @ApiResponse(code = 401, message = "not authorized!"),
             @ApiResponse(code = 403, message = "forbidden!!!"),
             @ApiResponse(code = 404, message = "not found!!!") })
-    @RequestMapping(value = "/getpractitioners")
+    @RequestMapping(value = "/getPractitioners")
     public Map<Integer, Practitioner> getpractitioners(){
         return practitionerData;
     }
@@ -55,7 +55,7 @@ public class PractitionerServiceController {
 
     @ApiOperation(value = "Get practitioner with the specified name in the System ", response = Practitioner.class, tags =
             "getpractitioner")
-    @RequestMapping(value = "/getpractitioner/{practitionerId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/getPractitioner/{practitionerId}", method = RequestMethod.GET)
     public Practitioner getpractitionerDetails(@PathVariable int practitionerId) {
         System.out.println("Getting practitioner details for " + practitionerId);
  
@@ -69,16 +69,16 @@ public class PractitionerServiceController {
     }
 
     @ApiOperation(value = "Add a practitioner", response = Practitioner.class, tags =
-            "addpractitioner")
-    @PostMapping("/addpractitioner")
+            "addPractitioner")
+    @PostMapping("/addPractitioner")
     public Map<Integer, Practitioner> createpractitioner(@RequestBody int id, String name) {
         practitionerData.put(id, new Practitioner(id, name));
         return practitionerData;
     }
 
     @ApiOperation(value = "Update a practitioner", response = Practitioner.class, tags =
-            "updatepractitioner")
-    @PutMapping("updatepractitioner/{id}")
+            "updatePractitioner")
+    @PutMapping("updatePractitioner/{id}")
     public Practitioner updatepractitioner(@PathVariable int id, @RequestBody String name) {
         practitionerData.get(id).setName(name);
         practitionerData.put(id, practitionerData.get(id));
@@ -87,7 +87,7 @@ public class PractitionerServiceController {
 
     @ApiOperation(value = "Delete the specified practitioner", response = Practitioner.class, tags =
             "deletepractitioner")
-    @DeleteMapping("deletepractitioner/{id}")
+    @DeleteMapping("deletePractitioner/{id}")
     public void deletePerson(@PathVariable int id) {
         practitionerData.remove(id);
     }
