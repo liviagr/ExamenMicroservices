@@ -16,7 +16,7 @@ eureka:
  
 spring:    
   application:
-    name: employee-service   
+    name: patient-service
      
 management:
   security:

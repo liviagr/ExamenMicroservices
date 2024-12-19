@@ -70,7 +70,7 @@ public class PatientServiceController {
         return patient;
     }
 
-    @ApiOperation(value = "Add a patient", response = Patient.class, tags =
+    @ApiOperation(value = "Add a patient", response = Iterable.class, tags =
             "addPatient")
     @PostMapping("/addPatient")
     public Map<Integer, Patient> createPatient(@RequestBody int id, String name) {
@@ -90,7 +90,7 @@ public class PatientServiceController {
     @ApiOperation(value = "Delete the specified patient", response = Patient.class, tags =
             "deletePatient")
     @DeleteMapping("deletePatient/{id}")
-    public void deletePerson(@PathVariable int id) {
+    public void deletePatient(@PathVariable int id) {
         patientData.remove(id);
     }
 
