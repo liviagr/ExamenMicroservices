@@ -1,11 +1,11 @@
-package com.howtodoinjava.example.employee.beans;
+package com.howtodoinjava.example.patient.beans;
 
-public class Employee {
+public class Patient {
 
 	private String name;
 	private int id;
 	
-	public Employee(int id, String name) {
+	public Patient(int id, String name) {
 		super();
 		this.id=id;
 		this.name=name;
@@ -29,7 +29,7 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [name=" + name + ", id=" + id + "]";
+		return "Patient [name=" + name + ", id=" + id + "]";
 	}
 
 }
