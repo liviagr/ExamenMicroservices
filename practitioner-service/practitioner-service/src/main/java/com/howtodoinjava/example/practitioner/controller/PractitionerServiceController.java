@@ -23,7 +23,7 @@ public class PractitionerServiceController {
 		 */
 
 		{
-			put(111,new Practitioner(111, "practitioner1"));
+			put(211,new Practitioner(211, "practitioner1"));
 			put(222,new Practitioner(222, "practitioner2"));
 		}
  

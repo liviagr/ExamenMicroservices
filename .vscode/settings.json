@@ -1,3 +1,7 @@
 {
-  "conventionalCommits.scopes": ["patient-service", "practitioner-service"]
+  "conventionalCommits.scopes": [
+    "patient-service",
+    "practitioner-service",
+    "medicalRecord-service"
+  ]
 }
