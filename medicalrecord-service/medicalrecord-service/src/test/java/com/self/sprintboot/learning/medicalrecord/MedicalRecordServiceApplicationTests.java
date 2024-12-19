@@ -1,4 +1,4 @@
-package com.self.sprintboot.learning.employee;
+package com.self.sprintboot.learning.medicalrecord;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class EmployeeServiceApplicationTests {
+public class MedicalRecordServiceApplicationTests {
 
 	@Test
 	public void contextLoads() {

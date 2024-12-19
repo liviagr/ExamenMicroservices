@@ -1,6 +1,7 @@
 server:
-  port: 8011    
- 
+  port: 8013
+
+#  context-path: /patient-service
 eureka:         
   instance:
     leaseRenewalIntervalInSeconds: 5
@@ -15,7 +16,7 @@ eureka:
  
 spring:    
   application:
-    name: employee-service   
+    name: practitioner-service
      
 management:
   security:
